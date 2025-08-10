@@ -1,17 +1,66 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Escolinha Davis{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/assets/css/app.css">
+    <link rel="icon" href="/assets/images/davis-logo.ico">
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+<div class="container">
+    {% if app.request.attributes.get('_route') != "app_admin"%}
+        <header class="d-flex flex-wrap justify-content-center py-2 mb-2 border-bottom">
+
+            {% if app.request.attributes.get('_route') != "app_login"%}
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                    <img class="align-items-center me-3" width="100" height="70" src="/assets/images/davis-logo.png">
+
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <span class="fs-6">{{ app.user.name }}</span>
+                    {% endif %}
+                </a>
+            {% endif %}
+
+            {% if app.request.attributes.get('_route') != "app_login" %}
+                <button class="btn btn-info text-white px-3 m-2" type="button">
+                    <a href="/logout" class="nav-link active" aria-current="page"><i class="bi bi-box-arrow-in-right m-1"></i>Sair</a>
+                </button>
+            {% endif %}
+
+        </header>
+    {% endif %}
+
+    <main>
         {% block body %}{% endblock %}
-    </body>
+    </main>
+
+    {% if app.request.attributes.get('_route') != "app_admin"%}
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-2 my-2 border-top">
+            <div class="col-md-12 d-flex align-items-center">
+                <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+                    <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+                </a>
+                <span class="mb-2 mb-md-0 text-body-secondary">© {{ "now" | date("Y") }} Desenvolvido por <a href="https://www.linkedin.com/in/washington-silva-9aa447142/" class="text-body-secondary link-body-emphasis text-decoration-none" target="_blank">Washington Luiz</a></span>
+                <ul class="nav col-md-8 justify-content-end list-unstyled d-flex">
+                    <li class="ms-3"><a class="text-body-secondary" href="https://www.youtube.com/@_IBAL2" target="_blank"><i class="bi bi-youtube"></i></a></li>
+                    <li class="ms-3"><a class="text-body-secondary" href="https://www.instagram.com/_ibal2/" target="_blank"><i class="bi bi-instagram"></i></a></li>
+                    <li class="ms-3"><a class="text-body-secondary" href="https://www.facebook.com/IgrejaBatistaEmArthurLundgrenIi" target="_blank"><i class="bi bi-facebook"></i></a></li>
+                </ul>
+            </div>
+        </footer>
+    {% endif %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
 </html>
