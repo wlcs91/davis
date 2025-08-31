@@ -16,6 +16,16 @@ class AlunoRepository extends ServiceEntityRepository
         parent::__construct($registry, Aluno::class);
     }
 
+    public function findBySearch($value): array{
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.nome_aluno like :val')
+            ->setParameter('val', '%' . $value . '%')
+            ->orderBy('a.nome_aluno', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     //    /**
     //     * @return Aluno[] Returns an array of Aluno objects
     //     */

@@ -4,8 +4,18 @@
 
 {% block body %}
 
-    <h3 class="mt-5 mb-4">Área de Alunos</h3>
-
+    <header class="mt-4 mb-4">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li>
+                        <h3>Área de Alunos</h3>
+                    </li>
+                </ul>
+                <form action="{{ path('app_aluno_index') }}" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search"> <input name="search" type="search" class="form-control" placeholder="Search..." aria-label="Search"> </form>
+            </div>
+        </div>
+    </header>
     <table class="table table-bordered mb-2">
         <thead class="table-dark text-center">
 
@@ -55,4 +65,5 @@
     <br>
     <a href="{{ path('app_aluno_new') }}" class="btn btn-success mb-3">Novo Aluno</a>
     <a href="{{ path('app_home_page') }}" class="btn btn-dark mb-3 ms-3">Voltar</a>
+    <a href="{{ path('app_aluno_index') }}" class="btn btn-secondary mb-3 ms-3">Limpar</a>
 {% endblock %}
