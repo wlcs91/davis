@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Alterar Aluno{% endblock %}
+
+{% block body %}
+    <h3 class="mt-5 mb-5">Alterar Dados do Aluno</h3>
+
+    {{ include('aluno/_form.html.twig', {'button_label': 'Update'}) }}
+
+    {{ include('aluno/_delete_form.html.twig') }}
+
+{% endblock %}

@@ -1,0 +1,98 @@
+{{ form_start(form) }}
+
+    <div class="row mb-3">
+        <label for="{{ form.nome_aluno.vars.id }}" class="col-sm-2 col-form-label">Aluno</label>
+        <div class="col-sm-4">
+            {{ form_widget(form.nome_aluno, {'attr': {'class':'form-control'}}) }}
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="{{ form.nome_responsavel.vars.id }}" class="col-sm-2 col-form-label">Responsável</label>
+        <div class="col-sm-3">
+            {{ form_widget(form.nome_responsavel, {'attr': {'class':'form-control'}}) }}
+        </div>
+    </div>
+    <div class="row mb-2">
+        <label for="{{ form.data_nascimento.vars.id }}" class="col-sm-2 col-form-label">Data Nascimento</label>
+        <div class="col-sm-2">
+            {{ form_widget(form.data_nascimento, {'attr': {'class':'form-control'}}) }}
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="{{ form.endereco.vars.id }}" class="col-sm-2 col-form-label">Endereço</label>
+        <div class="col-sm-6">
+            {{ form_widget(form.endereco, {'attr': {'class':'form-control'}}) }}
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="{{ form.contato.vars.id }}" class="col-sm-2 col-form-label">Contato</label>
+        <div class="col-sm-2">
+            {{ form_widget(form.contato, {'attr': {'class':'form-control'}}) }}
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="{{ form.rg.vars.id }}" class="col-sm-2 col-form-label">RG</label>
+        <div class="col-sm-2">
+            {{ form_widget(form.rg, {'attr': {'class':'form-control'}}) }}
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="{{ form.cpf.vars.id }}" class="col-sm-2 col-form-label">CPF</label>
+        <div class="col-sm-2">
+            {{ form_widget(form.cpf, {'attr': {'class':'form-control'}}) }}
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="{{ form.peso.vars.id }}" class="col-sm-2 col-form-label">Peso</label>
+        <div class="col-sm-1">
+            {{ form_widget(form.peso, {'attr': {'class':'form-control'}}) }}
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="{{ form.altura.vars.id }}" class="col-sm-2 col-form-label">Altura</label>
+        <div class="col-sm-1">
+            {{ form_widget(form.altura, {'attr': {'class':'form-control'}}) }}
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="{{ form.tipo_sanguineo.vars.id }}" class="col-sm-2 col-form-label">Tipo Sanguíneo</label>
+        <div class="col-sm-1">
+            {{ form_widget(form.tipo_sanguineo, {'attr': {'class':'form-control'}}) }}
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="{{ form.alergia.vars.id }}" class="col-sm-2 col-form-label">Alergia</label>
+        <div class="col-sm-4">
+            {{ form_widget(form.alergia, {'attr': {'class':'form-control'}}) }}
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="{{ form.medicamentos.vars.id }}" class="col-sm-2 col-form-label">Medicamentos</label>
+        <div class="col-sm-4">
+            {{ form_widget(form.medicamentos, {'attr': {'class':'form-control'}}) }}
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="{{ form.numero_pe.vars.id }}" class="col-sm-2 col-form-label">Número (pé)</label>
+        <div class="col-sm-1">
+            {{ form_widget(form.numero_pe, {'attr': {'class':'form-control'}}) }}
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="{{ form.pe_dominante.vars.id }}" class="col-sm-2 col-form-label">Pé Dominante</label>
+        <div class="col-sm-2">
+            {{ form_widget(form.pe_dominante, {'attr': {'class':'form-control'}}) }}
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="{{ form.obs.vars.id }}" class="col-sm-2 col-form-label">Observações</label>
+        <div class="col-sm-6">
+            {{ form_widget(form.obs, {'attr': {'class':'form-control'}}) }}
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success float-start mb-4 mt-3">Salvar</button>
+    <a href="/aluno" class="btn btn-dark float-start mb-4 mt-3 ms-3">Voltar</a>
+
+{#    <button class="btn btn-success mt-3 mb-5">{{ button_label|default('Cadastrar') }}</button>#}
+{{ form_end(form) }}

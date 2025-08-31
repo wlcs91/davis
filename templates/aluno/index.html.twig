@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Escolinha de Futebol Davis{% endblock %}
+
+{% block body %}
+
+    <h3 class="mt-5 mb-4">Área de Alunos</h3>
+
+    <table class="table table-bordered mb-2">
+        <thead class="table-dark text-center">
+
+        {% if alunos is not empty %}
+              <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Responsável</th>
+                <th>Nascimento</th>
+                <th>Peso</th>
+                <th>Altura</th>
+                <th>Sangue</th>
+                <th>Numero(pé) </th>
+                <th>Pé Dominante</th>
+                <th>Ações</th>
+            </tr>
+
+        {% endif %}
+
+        </thead>
+        <tbody>
+        {% for aluno in alunos %}
+              <tr>
+                <td class="text-center">{{ aluno.id }}</td>
+                <td>{{ aluno.nomeAluno }}</td>
+                <td>{{ aluno.nomeResponsavel }}</td>
+                <td class="text-center">{{ aluno.dataNascimento ? aluno.dataNascimento|date('d/m/Y') : '' }}</td>
+                <td class="text-center">{{ aluno.peso }}</td>
+                <td class="text-center">{{ aluno.altura }}</td>
+                <td class="text-center">{{ aluno.tipoSanguineo }}</td>
+                <td class="text-center">{{ aluno.numeroPe }}</td>
+                <td class="text-center">{{ aluno.peDominante }}</td>
+                <td class="text-center">
+                    <a class="me-3" href="{{ path('app_aluno_show', {'id': aluno.id}) }}"><img src="/assets/images/info.png" height="24px" width="24px" alt="Mostrar"></a>
+                    <a href="{{ path('app_aluno_edit', {'id': aluno.id}) }}"><img src="/assets/images/edit.png" height="24px" width="24px" alt="Alterar"></a>
+                </td>
+              </tr>
+
+        {% else %}
+            <tr>
+                <td colspan="17">Nenhum registro encontrado!</td>
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="{{ path('app_aluno_new') }}" class="btn btn-success mb-3">Novo Aluno</a>
+    <a href="{{ path('app_home_page') }}" class="btn btn-dark mb-3 ms-3">Voltar</a>
+{% endblock %}

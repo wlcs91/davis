@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dados do Aluno{% endblock %}
+
+{% block body %}
+    <h3 class="mt-5 mb-5">Dados do Aluno</h3>
+
+    <div class="col-sm-8">
+        <table class="table table-striped table-hover">
+            <tbody>
+                <tr>
+                    <th>Aluno</th>
+                    <td>{{ aluno.nomeAluno }}</td>
+                </tr>
+                <tr>
+                    <th>Responsável</th>
+                    <td>{{ aluno.nomeResponsavel }}</td>
+                </tr>
+                <tr>
+                    <th>Data Nascimento</th>
+                    <td>{{ aluno.dataNascimento ? aluno.dataNascimento|date('d/m/Y') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Endereço</th>
+                    <td>{{ aluno.endereco }}</td>
+                </tr>
+                <tr>
+                    <th>Contato</th>
+                    <td>{{ aluno.contato }}</td>
+                </tr>
+                <tr>
+                    <th>RG</th>
+                    <td>{{ aluno.rg }}</td>
+                </tr>
+                <tr>
+                    <th>CPF</th>
+                    <td>{{ aluno.cpf }}</td>
+                </tr>
+                <tr>
+                    <th>Peso</th>
+                    <td>{{ aluno.peso }}</td>
+                </tr>
+                <tr>
+                    <th>Altura</th>
+                    <td>{{ aluno.altura }}</td>
+                </tr>
+                <tr>
+                    <th>Tipo Sanguíéneo</th>
+                    <td>{{ aluno.tipoSanguineo }}</td>
+                </tr>
+                <tr>
+                    <th>Alergia</th>
+                    <td>{{ aluno.alergia }}</td>
+                </tr>
+                <tr>
+                    <th>Medicamentos</th>
+                    <td>{{ aluno.medicamentos }}</td>
+                </tr>
+                <tr>
+                    <th>Numero (pé)</th>
+                    <td>{{ aluno.numeroPe }}</td>
+                </tr>
+                <tr>
+                    <th>Pé Dominante</th>
+                    <td>{{ aluno.peDominante }}</td>
+                </tr>
+                <tr>
+                    <th>Obs</th>
+                    <td>{{ aluno.obs }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <a class="btn btn-info float-start mb-4 mt-3 text-white" href="{{ path('app_aluno_edit', {'id': aluno.id}) }}">Alterar</a>
+    <a class="btn btn-dark float-start mb-4 mt-3 ms-3" href="{{ path('app_aluno_index') }}">Voltar</a>
+
+    {{ include('aluno/_delete_form.html.twig') }}
+{% endblock %}
