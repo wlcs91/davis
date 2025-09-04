@@ -6,7 +6,8 @@ use App\Entity\Aluno;
 use App\Form\AlunoType;
 use App\Repository\AlunoRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use JetBrains\PhpStorm\NoReturn;
+use Pagerfanta\Doctrine\ORM\QueryAdapter;
+use Pagerfanta\Pagerfanta;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,16 +19,23 @@ final class AlunoController extends AbstractController
     #[Route(name: 'app_aluno_index', methods: ['GET'])]
     public function index(AlunoRepository $alunoRepository, Request $request): Response
     {
-        $pesquisa = $request->query->get('search');
+        $search = $request->query->get('search');
 
-        if($pesquisa != ""){
-            $filter = $alunoRepository->findBySearch($pesquisa);
+        if($search != ""){
+            $filter = $alunoRepository->findBySearch($search);
         } else {
-            $filter = $alunoRepository->findAll();
+            $filter = $alunoRepository->findAllStudents($search);
         }
 
+        $adapter = new QueryAdapter($filter);
+        $pagerFanta = Pagerfanta::createForCurrentPageWithMaxPerPage(
+            $adapter,
+            $request->query->get('page', default: 1),
+            maxPerPage: 10
+        );
+
         return $this->render('aluno/index.html.twig', [
-            'alunos' => $filter,
+            'pager' => $pagerFanta,
         ]);
     }
 

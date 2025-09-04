@@ -12,14 +12,14 @@
                         <h3>Área de Alunos</h3>
                     </li>
                 </ul>
-                <form action="{{ path('app_aluno_index') }}" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search"> <input name="search" type="search" class="form-control" placeholder="Search..." aria-label="Search"> </form>
+                <form action="{{ path('app_aluno_index') }}" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search"> <input name="search" type="search" class="form-control" placeholder="Pesquisar..." aria-label="Search"> </form>
             </div>
         </div>
     </header>
     <table class="table table-bordered mb-2">
         <thead class="table-dark text-center">
 
-        {% if alunos is not empty %}
+        {% if pager is not empty %}
               <tr>
                 <th>Id</th>
                 <th>Nome</th>
@@ -37,7 +37,7 @@
 
         </thead>
         <tbody>
-        {% for aluno in alunos %}
+        {% for aluno in pager %}
               <tr>
                 <td class="text-center">{{ aluno.id }}</td>
                 <td>{{ aluno.nomeAluno }}</td>
@@ -60,10 +60,19 @@
             </tr>
 
         {% endfor %}
+
         </tbody>
     </table>
-    <br>
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="mt-2">
+            {{ pagerfanta(pager) }}
+        </div>
+    </div>
     <a href="{{ path('app_aluno_new') }}" class="btn btn-success mb-3">Novo Aluno</a>
     <a href="{{ path('app_home_page') }}" class="btn btn-dark mb-3 ms-3">Voltar</a>
     <a href="{{ path('app_aluno_index') }}" class="btn btn-secondary mb-3 ms-3">Limpar</a>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/css/pagerfanta.css') }}">
 {% endblock %}

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Aluno;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -16,13 +17,23 @@ class AlunoRepository extends ServiceEntityRepository
         parent::__construct($registry, Aluno::class);
     }
 
-    public function findBySearch($value): array{
+    public function findAllStudents($value): QueryBuilder{
+        return $this->createQueryBuilder('a')
+//            ->andWhere('a.nome_aluno like :val')
+//            ->setParameter('val', '%' . $value . '%')
+            ->orderBy('a.nome_aluno', 'ASC')
+//            ->getQuery()
+//            ->getResult()
+            ;
+    }
+
+    public function findBySearch($value): QueryBuilder{
         return $this->createQueryBuilder('a')
             ->andWhere('a.nome_aluno like :val')
             ->setParameter('val', '%' . $value . '%')
             ->orderBy('a.nome_aluno', 'ASC')
-            ->getQuery()
-            ->getResult()
+//            ->getQuery()
+//            ->getResult()
             ;
     }
 
