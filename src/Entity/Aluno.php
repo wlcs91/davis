@@ -59,6 +59,9 @@ class Aluno
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $obs = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -240,6 +243,18 @@ class Aluno
     public function setObs(?string $obs): static
     {
         $this->obs = $obs;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }

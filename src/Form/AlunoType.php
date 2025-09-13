@@ -5,7 +5,7 @@ namespace App\Form;
 use App\Entity\Aluno;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -97,6 +97,12 @@ class AlunoType extends AbstractType
                 'expanded' => false,
             ])
             ->add('obs')
+            ->add('image', type: FileType::class,
+                options: [
+                    'data_class' => null,
+                    'required' => false,
+                    'mapped' => false,
+            ]);
         ;
     }
 

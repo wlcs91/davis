@@ -90,6 +90,12 @@
             {{ form_widget(form.obs, {'attr': {'class':'form-control'}}) }}
         </div>
     </div>
+    <div class="row mb-3">
+        <label for="{{ form.image.vars.id }}" class="col-sm-2 form-label">Anexar Foto</label>
+        <div class="col-sm-6">
+            {{ form_widget( form.image,{'attr':{'class':'form-control'}} ) }}
+        </div>
+    </div>
 
     <button type="submit" class="btn btn-success float-start mb-4 mt-3">Salvar</button>
     <a href="/aluno" class="btn btn-dark float-start mb-4 mt-3 ms-3">Voltar</a>

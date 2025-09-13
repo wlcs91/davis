@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+
 #[Route('/aluno')]
 final class AlunoController extends AbstractController
 {
@@ -47,6 +48,23 @@ final class AlunoController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $file = $form['image']->getData();
+
+            if($file)
+            {
+                $someNewFilename = uniqid();
+                $extension = $file->guessExtension();
+
+                if(!$extension)
+                {
+                    $extension = 'png';
+                }
+
+                $file->move('assets/images/alunos', $someNewFilename.".".$extension);
+                $aluno->setImage($someNewFilename.".".$extension);
+            }
+
             $entityManager->persist($aluno);
             $entityManager->flush();
 
@@ -74,6 +92,24 @@ final class AlunoController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $file = $form['image']->getData();
+
+            if($file)
+            {
+                $someNewFilename = uniqid();
+                $extension = $file->guessExtension();
+
+                if(!$extension)
+                {
+                    $extension = 'png';
+                }
+
+                $file->move('assets/images/alunos', $someNewFilename.".".$extension);
+                $aluno->setImage($someNewFilename.".".$extension);
+            }
+
+            $entityManager->persist($aluno);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_aluno_index', [], Response::HTTP_SEE_OTHER);

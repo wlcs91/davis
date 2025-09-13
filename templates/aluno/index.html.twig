@@ -12,57 +12,54 @@
                         <h3>Área de Alunos</h3>
                     </li>
                 </ul>
-                <form action="{{ path('app_aluno_index') }}" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search"> <input name="search" type="search" class="form-control" placeholder="Pesquisar..." aria-label="Search"> </form>
+                <form action="{{ path('app_aluno_index') }}" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-0" role="search"> <input name="search" type="search" class="form-control" placeholder="Pesquisar..." aria-label="Search"> </form>
             </div>
         </div>
     </header>
-    <table class="table table-bordered mb-2">
-        <thead class="table-dark text-center">
+     <div class="table-responsive" style="max-height: 500px; overflow: auto">
+        <table class="table table-responsive table-bordered">
+            <thead class="table-dark text-center">
 
-        {% if pager is not empty %}
-              <tr>
-                <th>Id</th>
-                <th>Nome</th>
-                <th>Responsável</th>
-                <th>Nascimento</th>
-                <th>Peso</th>
-                <th>Altura</th>
-                <th>Sangue</th>
-                <th>Numero(pé) </th>
-                <th>Pé Dominante</th>
-                <th>Ações</th>
-            </tr>
+            {% if pager is not empty %}
+                  <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Responsável</th>
+                    <th>Pé</th>
+                    <th>Numero(pé) </th>
+                    <th>Detalhes</th>
+                    <th>Alterar</th>
+                </tr>
 
-        {% endif %}
+            {% endif %}
 
-        </thead>
-        <tbody>
-        {% for aluno in pager %}
-              <tr>
-                <td class="text-center">{{ aluno.id }}</td>
-                <td>{{ aluno.nomeAluno }}</td>
-                <td>{{ aluno.nomeResponsavel }}</td>
-                <td class="text-center">{{ aluno.dataNascimento ? aluno.dataNascimento|date('d/m/Y') : '' }}</td>
-                <td class="text-center">{{ aluno.peso }}</td>
-                <td class="text-center">{{ aluno.altura }}</td>
-                <td class="text-center">{{ aluno.tipoSanguineo }}</td>
-                <td class="text-center">{{ aluno.numeroPe }}</td>
-                <td class="text-center">{{ aluno.peDominante }}</td>
-                <td class="text-center">
-                    <a class="me-3" href="{{ path('app_aluno_show', {'id': aluno.id}) }}"><img src="/assets/images/info.png" height="24px" width="24px" alt="Mostrar"></a>
-                    <a href="{{ path('app_aluno_edit', {'id': aluno.id}) }}"><img src="/assets/images/edit.png" height="24px" width="24px" alt="Alterar"></a>
-                </td>
-              </tr>
+            </thead>
+            <tbody>
+            {% for aluno in pager %}
+                  <tr>
+                    <td class="text-center">{{ aluno.id }}</td>
+                    <td>{{ aluno.nomeAluno }}</td>
+                    <td>{{ aluno.nomeResponsavel }}</td>
+                    <td class="text-center">{{ aluno.peDominante }}</td>
+                    <td class="text-center">{{ aluno.numeroPe }}</td>
+                    <td class="text-center">
+                        <a href="{{ path('app_aluno_show', {'id': aluno.id}) }}"><img src="/assets/images/info.png" height="24px" width="24px" alt="Mostrar"></a>
+                    </td>
+                    <td class="text-center">
+                      <a href="{{ path('app_aluno_edit', {'id': aluno.id}) }}"><img src="/assets/images/edit.png" height="24px" width="24px" alt="Alterar"></a>
+                    </td>
+                  </tr>
 
-        {% else %}
-            <tr>
-                <td colspan="17">Nenhum registro encontrado!</td>
-            </tr>
+            {% else %}
+                <tr>
+                    <td colspan="17">Nenhum registro encontrado!</td>
+                </tr>
 
-        {% endfor %}
+            {% endfor %}
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
     <div class="d-flex justify-content-center align-items-center">
         <div class="mt-2">
             {{ pagerfanta(pager) }}
