@@ -1,0 +1,54 @@
+{{ form_start(form) }}
+
+    <div class="container">
+        {% for message in app.flashes('success') %}
+            <div class="flash-success alert alert-success" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('warning') %}
+            <div class="flash-warning alert alert-warning" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+
+    {% if repository|length > 0 %}
+        {% set disable = true %}
+    {% else %}
+        {% set disable = false %}
+    {% endif %}
+
+    <div class="jumbotron mt-4">
+        <h1>Ata de Presença - {{ "now"|date("d/m/Y") }}</h1>
+        <p class="lead">Apenas os atletas contidos na ata poderão participar das atividades da Escolinha</p>
+    </div>
+    <nav class="navbar navbar-dark bg-dark rounded mt-4 mb-3">
+        <a class="navbar-brand ms-3" href="#">Infantil</a>
+    </nav>
+    <div class="form-group">
+        <label for="{{ form.infantil.vars.id }}">Campo da Igreja</label>
+        {{ form_widget(form.infantil, {'attr': {'class':'form-control', 'disabled': disable }}) }}
+    </div>
+    <nav class="navbar navbar-dark bg-dark rounded mt-4 mb-3">
+        <a class="navbar-brand ms-3" href="#">Juvenil</a>
+    </nav>
+    <div class="form-group mb-3">
+        <label for="{{ form.juvenil.vars.id }}">Quadra do Eraldo</label>
+        {{ form_widget(form.juvenil, {'attr': {'class':'form-control', 'disabled': disable }}) }}
+    </div>
+    <div class="form-group mb-4">
+        {{ form_widget(form.data, {'attr': {'class':'form-control'}}) }}
+    </div>
+
+    {% if repository|length > 0 %}
+        <a href="/ata/{{ repository[0].id }}/edit" class="btn btn-info text-white float-start mb-4 mt-3">Alterar</a>
+    {% else %}
+        <button type="submit" class="btn btn-success float-start mb-4 mt-3">Salvar</button>
+    {% endif %}
+
+    <a href="/" class="btn btn-dark float-start mb-4 mt-3 ms-3">Voltar</a>
+
+    <br><br><br>
+
+{{ form_end(form) }}
