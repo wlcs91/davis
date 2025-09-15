@@ -1,0 +1,44 @@
+{# templates/login/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{# ... #}
+
+{% block body %}
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <p>Usuário: {{ app.user.username }}</p>
+    {% endif %}
+
+    <main class="form-signin w-100 m-auto mb-5">
+        <div class="row text-center vsc-initialized">
+            <div class="col-xs-12 col-sm-6 col-md-4 m-auto">
+                <form class="form-signin w-100" action="{{ path('app_login') }}" method="post">
+                    <img class="mb-3 mt-3" src="/assets/images/davis-logo.png" alt="" width="200" height="150">
+                    <h1 class="h3 mb-3 fw-normal">Faça login para acessar o sistema</h1>
+
+                    <div class="form-floating mt-2">
+                        <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control" placeholder="Usuário" required>
+                        <label for="username">Usuário</label>
+                    </div>
+                    <div class="form-floating mt-2">
+                        <input type="password" id="password" name="_password" class="form-control" placeholder="Senha" required>
+                        <label for="password">Senha</label>
+                    </div>
+
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                    <button class="btn btn-info text-white w-100 py-2 mt-4" type="submit">Entrar</button>
+                    <p class="mt-5 mb-3 text-muted"></p>
+
+                    {% if error %}
+                        <div class="flash-danger alert alert-danger" role="alert">
+                            Usuário e/ou senha incorretos!
+                        </div>
+                    {% endif %}
+
+                </form>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}
