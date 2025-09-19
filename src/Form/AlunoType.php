@@ -44,6 +44,7 @@ class AlunoType extends AbstractType
                 'placeholder' => 'Selecione uma opção',
                 'multiple' => false,
                 'expanded' => false,
+                'required' => false,
             ])
             ->add('alergia')
             ->add('medicamentos')
